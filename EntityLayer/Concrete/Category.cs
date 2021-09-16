@@ -16,6 +16,9 @@ namespace EntityLayer.Concrete
 
         public String CategoryDescription { get; set; }
 
-       public bool CategoryStatus { get; set; }
+        public bool CategoryStatus { get; set; }
+
+        public List<Blog> Blogs { get; set; }
+
     }
 }
