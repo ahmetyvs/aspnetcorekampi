@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class CategoryRepository : ICatagoryDal
+    public class CategoryRepository : ICategoryDal
     {
         Context c = new Context();
 
