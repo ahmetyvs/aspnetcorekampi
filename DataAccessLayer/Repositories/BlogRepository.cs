@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class BlogRepository : IBlogDal
+    public class BlogRepository //: IBlogDal
     {
         // Context c = new Context();
 
