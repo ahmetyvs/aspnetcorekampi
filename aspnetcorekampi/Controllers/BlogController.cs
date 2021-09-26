@@ -14,7 +14,12 @@ namespace aspnetcorekampi.Controllers
 
         public IActionResult Index()
         {
-            var values = bm.Getlist();
+            var values = bm.GetBlogListWithCategory();
+            return View(values);
+        }
+        public IActionResult BlogReadAll(int id) 
+        {
+            var values = bm.GetBlogByID(id);
             return View(values);
         }
     }
