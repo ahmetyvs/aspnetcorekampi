@@ -14,7 +14,6 @@ namespace aspnetcorekampi.ViewComponents.Comment
 
         public IViewComponentResult Invoke(int id) // Invoke çağırmak anlamına geliyor.
         {
-            //ViewBag.i = id;
             var values = cm.Getlist(id);
             return View(values);
         }
