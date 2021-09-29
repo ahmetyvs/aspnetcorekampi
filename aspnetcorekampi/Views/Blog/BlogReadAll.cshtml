@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
 <body>
     <!--//banner-->
     <section class="banner-bottom">
@@ -30,7 +29,7 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
+                                                <i class="far fa-calendar-alt"></i>@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
                                             </a>
                                         </li>
                                         <li class="mx-2">
@@ -43,11 +42,9 @@
                                                 <i class="far fa-comment"></i> 0 Yorum
                                             </a>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
-
                             <h3>
                                 <a href="single.html">@item.BlogTitle </a>
                             </h3>
@@ -56,11 +53,12 @@
                             </p>
                             <a href="/Blog/Index/" class="btn btn-primary read-m">Blog Listesi</a>
                         </div>
-                        @await Html.PartialAsync("~/Views/Comment/PartialCommentListByBlog.cshtml")
+                        @await Component.InvokeAsync("CommentListByBlog", new {id=ViewBag.i })
+                        @*@await Html.PartialAsync("~/Views/Comment/PartialCommentListByBlog.cshtml")*@
                         @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")
                     }
-                </div>
 
+                </div>
                 <!--//left-->
                 <!--right-->
                 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
@@ -75,7 +73,6 @@
                                 <input type="email" placeholder="Email" required="">
                                 <input type="submit" value="Subscribe">
                             </form>
-
                         </div>
                         <div class="tech-btm">
                             <h4>Categories</h4>
@@ -96,7 +93,6 @@
                         </div>
                         <div class="tech-btm">
                             <h4>Top stories of the week</h4>
-
                             <div class="blog-grids row mb-3">
                                 <div class="col-md-5 blog-grid-left">
                                     <a href="single.html">
@@ -104,7 +100,6 @@
                                     </a>
                                 </div>
                                 <div class="col-md-7 blog-grid-right">
-
                                     <h5>
                                         <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
                                     </h5>
@@ -114,7 +109,6 @@
                                         </span>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="blog-grids row mb-3">
                                 <div class="col-md-5 blog-grid-left">
@@ -132,7 +126,6 @@
                                         </span>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="single-gd my-5 tech-btm">
@@ -167,7 +160,6 @@
                                     </a>
                                 </div>
                                 <div class="blog-grid-right">
-
                                     <h5>
                                         <a href="single.html">Pellentesque dui, non felis. Maecenas male</a>
                                     </h5>
@@ -176,7 +168,6 @@
                             </div>
                         </div>
                     </div>
-
                 </aside>
                 <!--//right-->
             </div>
