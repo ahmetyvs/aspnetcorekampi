@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EntityLayer.Concrete.Comment>
+﻿@using EntityLayer.Concrete
+@model List<Blog>
 
 
 <div class="tech-btm">
@@ -7,17 +8,17 @@
     {
         <div class="blog-grids row mb-3">
             <div class="col-md-5 blog-grid-left">
-                <a href="single.html">
+                <a href="/Blog/BlogReadAll/@item.BlogID">
                     <img src="~/CoreBlogTema/images/1.jpg" class="img-fluid" alt="">
                 </a>
             </div>
             <div class="col-md-7 blog-grid-right">
                 <h5>
-                    <a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
+                    <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
                 </h5>
                 <div class="sub-meta">
                     <span>
-                        <i class="far fa-clock"></i> 20 Jan, 2018
+                        <i class="far fa-clock"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
                     </span>
                 </div>
             </div>

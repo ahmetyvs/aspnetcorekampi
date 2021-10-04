@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace aspnetcorekampi.ViewComponents.Blog
 {
-    public class WritersLastBlog : ViewComponent
+    public class WriterLastBlog : ViewComponent
     {
 
         BlogManager bm = new BlogManager(new EfBlogRepository());
 
-        public IViewComponentResult Invoke(int id) 
+        public IViewComponentResult Invoke() 
         {
             var values = bm.GetBlogListByWriter(1);
             return View(values);
