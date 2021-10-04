@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
-    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ValidationRules\" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
 </Project>
