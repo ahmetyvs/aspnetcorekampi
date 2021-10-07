@@ -1,0 +1,15 @@
+﻿
+<!--Mail bültenine abone olma sayfası-->
+
+<div class="tech-btm">
+    <img src="~/CoreBlogTema/images/banner1.jpg" class="img-fluid" alt="">
+</div>
+<div class="tech-btm">
+    <h4>Mail bültenine abone olun</h4>
+    <p>Teknoloji, yazılım ve diğer bloglar... </p>
+    @*@using (Html.BeginForm("SubscribeMail", "NewsLetter", new { ReturnUrlu = Request.QueryString["ReturnUrl"], FormMethod.Post }))*@
+        <form action="/NewsLetter/SubscribeMail/" method="post">
+            <input type="email" placeholder="E-mail" name="Mail" required="">
+            <input type="submit" value="Abone ol">
+        </form>
+</div>
