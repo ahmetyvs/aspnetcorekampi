@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace aspnetcorekampi.Controllers
 {
+    [AllowAnonymous]
+
     public class Register : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());

@@ -4,10 +4,13 @@
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
+<link href="~/CoreBlogTema/css/contact.css" rel='stylesheet' type='text/css' />
+
+
 <section class="main-content-w3layouts-agileits">
 
-    <h3 class="tittle">Contact Us</h3>
-    <p class="sub text-center">We love to discuss your idea</p>
+    <h3 class="tittle">BİZE ULAŞIN</h3>
+    <p class="sub text-center">Sistemi geliştirmek için görüşleriniz çok önemli</p>
     <div class="contact-map inner-sec">
 
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100949.24429313939!2d-122.44206553967531!3d37.75102885910819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1472190196783"
@@ -23,9 +26,9 @@
                             <i class="far fa-map"></i>
                         </div>
                         <div class="col-md-8 address-right text-left">
-                            <h6>Address</h6>
+                            <h6>Addres</h6>
                             <p>
-                                California, USA
+                                GERMENCİK / AYDIN
 
                             </p>
                         </div>
@@ -38,14 +41,13 @@
                             <i class="far fa-envelope"></i>
                         </div>
                         <div class="col-md-8 address-right text-left">
-                            <h6>Email</h6>
+                            <h6>E-mail adresimiz</h6>
                             <p>
-                                Email :
-                                <a href="mailto:example@email.com"> mail@example.com</a>
+                                Email:
+                                <a href="mailto:germencik09@nvi.gov.tr">germencik09@nvi.gov.tr</a>
 
                             </p>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-4 address-grid">
@@ -54,11 +56,10 @@
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <div class="col-md-8 address-right text-left">
-                            <h6>Phone</h6>
-                            <p>+1 234 567 8901</p>
+                            <h6>Telefon</h6>
+                            <p>+90 256 563 11 50</p>
 
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -70,25 +71,24 @@
                 <div class="row contact_left_grid">
                     <div class="col-md-6 con-left">
                         <div class="form-group">
-                            <label for="validationCustom01 my-2">Name</label>
-                            <input class="form-control" type="text" name="Name" placeholder="" required="">
+                            <label for="validationCustom01 my-2">Adınız Soyadınız</label>
+                            <input class="form-control" type="text" name="ContactUserName" placeholder="" required="">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Email</label>
-                            <input class="form-control" type="email" name="Email" placeholder="" required="">
+                            <label for="exampleFormControlInput1">E-mail Adresiniz</label>
+                            <input class="form-control" type="email" name="ContactMail" placeholder="" required="">
                         </div>
                         <div class="form-group">
-                            <label for="validationCustom03 my-2">Subject</label>
-                            <input class="form-control" type="text" name="Subject" placeholder="" required="">
+                            <label for="validationCustom03 my-2">Konu</label>
+                            <input class="form-control" type="text" name="ContactSubject" placeholder="" required="">
                         </div>
                     </div>
                     <div class="col-md-6 con-right">
                         <div class="form-group">
-                            <label for="textarea">Message</label>
-                            <textarea id="textarea" placeholder=""></textarea>
+                            <label for="textarea">Mesajınız</label>
+                            <textarea id="textarea" name="ContactMessage" placeholder=""></textarea>
                         </div>
-                        <input class="form-control" type="submit" value="Submit">
-
+                        <input class="form-control" type="submit" value="Gönder">
                     </div>
                 </div>
             </form>
