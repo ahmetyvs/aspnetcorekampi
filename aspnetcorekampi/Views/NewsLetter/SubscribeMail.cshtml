@@ -1,11 +1,36 @@
-﻿
-<!--Mail bültenine abone olma sayfası-->
+﻿<!--Mail bültenine abone olma sayfası-->
+
+<link href="~/css/sweetalert2.min.css" rel="stylesheet" />
+<!--Sweet alart-->
+<script src="~/lib/jquery/dist/sweetalert2.min.js"></script>
+
+<script src="~/lib/jquery/dist/jquery-3.6.0.min.js"></script>
 
 <div class="tech-btm">
     <p>Teknoloji, yazılım ve diğer bloglar... </p>
-    @*@using (Html.BeginForm("SubscribeMail", "NewsLetter", new { ReturnUrlu = Request.QueryString["ReturnUrl"], FormMethod.Post }))*@
-        <form action="/NewsLetter/SubscribeMail/" method="post">
-            <input type="email" placeholder="E-mail" name="Mail" required="">
-            <input type="submit" value="Abone ol">
-        </form>
+    <input type="submit" id="submit" value="Abone ol">
 </div>
+<script>
+    $(document).on("click", "#submit", async function () {
+        const { value: formValues } = await Swal.fire({
+            title: 'Bültene Abone Ol..',
+            showCancelButton: true,
+            cancalButtonText: 'İptal',
+            cancelButtonColor: 'd43f3a',
+            confirmButtonText: 'Kayıt ol',
+            confirmButtonColor: '337ab7',
+            html:
+                '<input id="Mail" placeholder="E-mail Adresinizi Giriniz" class="swal2-input" > ',
+            focusConfirm: false,
+            preConfirm: () => {
+                return [
+                    document.getElementById('Mail').value,
+                ]
+            }
+        })
+
+        if (formValues) {
+            Swal.fire(JSON.stringify(formValues))
+        }
+    });
+</script>

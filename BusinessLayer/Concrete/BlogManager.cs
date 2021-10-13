@@ -45,12 +45,18 @@ namespace BusinessLayer.Concrete
 
         public List<Blog> GetBlogByID(int id)
         {
-            return _blogDal.GetListAll(x=>x.BlogID==id);
+            return _blogDal.GetListAll(x => x.BlogID == id);
         }
 
         public List<Blog> Getlist()
         {
             return _blogDal.GetListAll();
+        }
+
+        // Eklenen en son 3 bloğu getir
+        public List<Blog> Getlast3Blog()
+        {
+            return _blogDal.GetListAll().Take(3).ToList();
         }
 
         public List<Blog> GetBlogListByWriter(int id)
