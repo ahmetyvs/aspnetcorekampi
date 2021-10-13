@@ -56,7 +56,7 @@ namespace BusinessLayer.Concrete
         // Eklenen en son 3 bloğu getir
         public List<Blog> Getlast3Blog()
         {
-            return _blogDal.GetListAll().Take(3).ToList();
+            return _blogDal.GetListAll().OrderByDescending(x=>x.BlogID).Take(3).ToList();
         }
 
         public List<Blog> GetBlogListByWriter(int id)

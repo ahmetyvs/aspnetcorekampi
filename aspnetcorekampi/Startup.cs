@@ -28,7 +28,7 @@ namespace aspnetcorekampi
         {
             services.AddControllersWithViews();
 
-            services.AddSession();
+           // services.AddSession();
 
             services.AddMvc(config =>
             {
@@ -66,7 +66,7 @@ namespace aspnetcorekampi
 
             app.UseHttpsRedirection();
 
-            app.UseSession();
+            //app.UseSession();
 
             app.UseStaticFiles();
 
