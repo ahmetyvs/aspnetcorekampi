@@ -15,5 +15,10 @@ namespace aspnetcorekampi.Controllers
         {
             return View();
         }
+
+        public PartialViewResult Solnavbar ()
+        {
+            return PartialView();
+        }
     }
 }

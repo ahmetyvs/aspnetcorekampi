@@ -28,8 +28,6 @@ namespace aspnetcorekampi
         {
             services.AddControllersWithViews();
 
-           // services.AddSession();
-
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -39,6 +37,7 @@ namespace aspnetcorekampi
             });
 
             services.AddMvc();
+
             services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
@@ -65,8 +64,6 @@ namespace aspnetcorekampi
             app.UseStatusCodePagesWithReExecute("/ErorPage/Error404", "?code={0}");
 
             app.UseHttpsRedirection();
-
-            //app.UseSession();
 
             app.UseStaticFiles();
 

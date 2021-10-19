@@ -14,7 +14,7 @@ namespace aspnetcorekampi.Controllers
 {
     [AllowAnonymous]
 
-    public class Register : Controller
+    public class RegisterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
 
