@@ -14,21 +14,21 @@
             <table class="table table-hover" width="100%" cellspacing="5">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Blog Başlığı</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Kategori</th>
-                        <th>Aktif/Pasif</th>
-                        <th>İçerik</th>
-                        <th>Düzenle</th>
-                        <th>Sil</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Blog Başlığı</th>
+                        <th scope="col">Oluşturulma Tarihi</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Aktif/Pasif</th>
+                        <th scope="col">İçerik</th>
+                        <th scope="col">Düzenle</th>
+                        <th scope="col">Sil</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <th>@item.BlogID</th>
+                            <th scope="row">@item.BlogID</th>
                             <td>@item.BlogTitle</td>
                             <td>@item.BlogCreateDate.ToShortDateString()</td>
                             <td>@item.Category.CategoryName</td>
@@ -84,7 +84,6 @@
                                     @Html.Raw(item.BlogContent)
                                 </td>
                             }
-                            <td>
                             <td><a href="#" class="btn btn-info btn-sm">Düzenle</a></td>
                             <td><a href="#" class="btn btn-danger btn-sm">Sil</a></td>
                         </tr>

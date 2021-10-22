@@ -11,14 +11,14 @@
         </div>
         <div class="col-md-7 blog-grid-right">
 
-            <h5>
-                <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogContent.Substring(0, item.BlogContent.Substring(0, 50).LastIndexOf(" ")) ... </a>
-            </h5>
-            <div class="sub-meta">
-                <span>
-                    <i class="far fa-clock"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
-                </span>
+                <h5>
+                    <a href="/Blog/BlogReadAll/@item.BlogID">@Html.Raw(item.BlogContent.Substring(0, item.BlogContent.Substring(0, 50).LastIndexOf(" "))) ... </a>
+                </h5>
+                <div class="sub-meta">
+                    <span>
+                        <i class="far fa-clock"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
+                    </span>
+                </div>
             </div>
-        </div>
     }
 </div>
