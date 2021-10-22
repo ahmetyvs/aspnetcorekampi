@@ -18,24 +18,14 @@ namespace BusinessLayer.Concrete
             _blogDal = blogDal;
         }
 
-        //public void BlogAdd(Blog blog)
-        //{
-        //    _blogDal.Insert(blog);
-        //}
-
-        //public void BlogDelete(Blog blog)
-        //{
-        //    _blogDal.Delete(blog);
-        //}
-
-        //public void BlogUpdate(Blog blog)
-        //{
-        //    _blogDal.Update(blog);
-        //}
-
         public List<Blog> GetBlogListWithCategory()
         {
             return _blogDal.GetListWithCategory();
+        }
+
+        public List<Blog> GetListWithCategoryByWriterBm(int id) // (İşl. sırası -3-)
+        {
+            return _blogDal.GetListWithCategoryByWriter(id);
         }
 
         public Blog GetById(int id)

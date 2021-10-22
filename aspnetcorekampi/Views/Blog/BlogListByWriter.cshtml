@@ -1,0 +1,97 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+@{
+    ViewData["Title"] = "BlogListByWriter";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body table-responsive">
+
+            <h4 class="card-title">Yazarın blokları</h4>
+            <table class="table table-hover" width="100%" cellspacing="5">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Blog Başlığı</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Kategori</th>
+                        <th>Aktif/Pasif</th>
+                        <th>İçerik</th>
+                        <th>Düzenle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.BlogID</th>
+                            <td>@item.BlogTitle</td>
+                            <td>@item.BlogCreateDate.ToShortDateString()</td>
+                            <td>@item.Category.CategoryName</td>
+                            <td>
+                                @if (item.BlogStatus==true)
+                                {
+                                    <span class="badge badge-success">Aktif</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">Pasif</span>
+                                }
+                            </td>
+
+                            @if (item.BlogContent.Length >= 80)
+                            {
+                                <td>
+                                    @Html.Raw(@item.BlogContent.Substring(0, item.BlogContent.Substring(0, 80).LastIndexOf(" ")))
+                                    <text> ... </text>
+
+                                    <br />
+                                    <!--Button trigger modal-->
+                                    <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#MevzautModal_@item.BlogID">
+                                        Devamını Gör.
+                                    </button>
+
+                                    <!--Modal-->
+                                    <div class="modal fade" id="MevzautModal_@item.BlogID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Blog Metni</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @Html.Raw(item.BlogContent)
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Mesaj modal sonu-->
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.Raw(item.BlogContent)
+                                </td>
+                            }
+                            <td>
+                            <td><a href="#" class="btn btn-info btn-sm">Düzenle</a></td>
+                            <td><a href="#" class="btn btn-danger btn-sm">Sil</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="/AddBlog/Blog" class="btn btn-primary btn-sm">Yeni Blog Ekle</a>
+        </div>
+    </div>
+</div>

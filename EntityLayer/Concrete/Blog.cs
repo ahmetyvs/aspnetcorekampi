@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace EntityLayer.Concrete
 {
@@ -14,6 +15,7 @@ namespace EntityLayer.Concrete
 
         public string BlogTitle { get; set; }
 
+        [AllowHtml]
         public string BlogContent { get; set; }
 
         public string BlogThumbnailImage { get; set; }

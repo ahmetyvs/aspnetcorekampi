@@ -20,5 +20,13 @@ namespace DataAccessLayer.EntityFramework
                 return c.Blogs.Include(x => x.Category).ToList();
             }
         }
+
+        public List<Blog> GetListWithCategoryByWriter(int id) // IBlogDal'daki tanımlamadan sonraki (İşl. sırası -2-)
+        {
+            var c = new Context();
+            {
+                return c.Blogs.Include(x => x.Category).Where(x=>x.WriterID==id).ToList();
+            }
+        }
     }
 }
