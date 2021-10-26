@@ -28,7 +28,7 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetListWithCategoryByWriter(id);
         }
 
-        public Blog GetById(int id)
+        public Blog TGetById(int id)
         {
             return _blogDal.GetByID(id);
         }
@@ -61,7 +61,7 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(Blog t)
         {
-            _blogDal.Delete(t);
+            _blogDal.Delete(t); // t'ye gelen değer blogvalue; blogvalue ise BlogControllerdan geliyor.
         }
 
         public void TUpdate(Blog t)

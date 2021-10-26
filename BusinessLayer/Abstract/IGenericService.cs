@@ -16,6 +16,6 @@ namespace BusinessLayer.Abstract
 
         List<T> Getlist();
 
-        T GetById(int id);
+        T TGetById(int id);
     }
 }

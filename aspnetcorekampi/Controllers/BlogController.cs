@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -24,12 +25,30 @@ namespace aspnetcorekampi.Controllers
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
+
         public IActionResult BlogReadAll(int id)
-        {
+        {            
             ViewBag.i = id;
             var values = bm.GetBlogByID(id);
+
+            Context c = new Context();
+            var Goruntulendi = c.Blogs.Find(id);
+            Goruntulendi.BlogGoruntulenme++;
+            c.SaveChanges();
+
             return View(values);
         }
+
+        //static void goruntuleme()
+        //{
+        //    Context c = new Context();
+        //    var GuncellenecekBegeni = c.Blogs.Find(id);
+        //    GuncellenecekBegeni.BlogGoruntulenme++;
+        //    //Context c = new Context();
+        //    //var datavalue = c.Blogs.Where(x => x.BlogGoruntulenme);
+        //    //datavalue = ++;
+        //    return (datavalue);
+        //}
 
         public IActionResult BlogListByWriter()
         {   // Buradaki 1 ıd numaralı yazar daha sonra Session ile çekilecek.
@@ -38,7 +57,7 @@ namespace aspnetcorekampi.Controllers
         }
 
         [HttpGet]
-        public IActionResult BlogAdd()
+        public IActionResult AddBlog()
         {
             CategoryManager cm = new CategoryManager(new EfCategoryRepository());
 
@@ -53,7 +72,7 @@ namespace aspnetcorekampi.Controllers
         }
 
         [HttpPost]
-        public IActionResult BlogAdd(Blog p)
+        public IActionResult AddBlog(Blog p)
         {
             BlogValidator bv = new BlogValidator();
             ValidationResult result = bv.Validate(p); // Çok önemli... Burada  ValidationResult'ı kullanırken Annodations değil using FluentValidation seçilecek
@@ -74,6 +93,37 @@ namespace aspnetcorekampi.Controllers
                 }
             }
             return View();
+        }
+
+        public IActionResult DeleteBlog (int id)
+        {
+            var blogvalue = bm.TGetById(id);
+            bm.TDelete(blogvalue);
+            return RedirectToAction ("BlogListByWriter");
+        }
+
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            var blogvalue = bm.TGetById(id);
+
+            CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+
+            List<SelectListItem> categoryvalues = (from x in cm.Getlist()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                   }).ToList();
+            ViewBag.cid = categoryvalues;
+            return View(blogvalue);
+        }
+
+        [HttpPost]
+        public IActionResult EditBlog(Blog p)
+        {
+            bm.TUpdate(p);
+            return RedirectToAction("BlogListByWriter");
         }
     }
 }
