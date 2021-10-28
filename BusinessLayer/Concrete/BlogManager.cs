@@ -49,6 +49,12 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetListAll().OrderByDescending(x=>x.BlogID).Take(3).ToList();
         }
 
+        //// Eklenen en son 10 bloğu getir
+        //public List<Blog> Getlast10Blog()
+        //{
+        //    return _blogDal.GetListAll().OrderByDescending(x => x.BlogID).Take(10).ToList();
+        //}
+
         public List<Blog> GetBlogListByWriter(int id)
         {
             return _blogDal.GetListAll(x => x.WriterID == id);

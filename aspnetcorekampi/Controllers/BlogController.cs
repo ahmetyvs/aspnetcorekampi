@@ -35,20 +35,8 @@ namespace aspnetcorekampi.Controllers
             var Goruntulendi = c.Blogs.Find(id);
             Goruntulendi.BlogGoruntulenme++;
             c.SaveChanges();
-
             return View(values);
         }
-
-        //static void goruntuleme()
-        //{
-        //    Context c = new Context();
-        //    var GuncellenecekBegeni = c.Blogs.Find(id);
-        //    GuncellenecekBegeni.BlogGoruntulenme++;
-        //    //Context c = new Context();
-        //    //var datavalue = c.Blogs.Where(x => x.BlogGoruntulenme);
-        //    //datavalue = ++;
-        //    return (datavalue);
-        //}
 
         public IActionResult BlogListByWriter()
         {   // Buradaki 1 ıd numaralı yazar daha sonra Session ile çekilecek.
@@ -80,7 +68,7 @@ namespace aspnetcorekampi.Controllers
             {
                 p.BlogStatus = true;
                 p.BlogCreateDate = DateTime.Now;
-                p.BlogGoruntulenme = 0;
+                p.BlogGoruntulenme = 1;
                 p.WriterID = 1;
                 bm.TAdd(p);
                 return RedirectToAction("BlogListByWriter", "Blog");

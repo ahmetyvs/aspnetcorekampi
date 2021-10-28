@@ -1,0 +1,21 @@
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace aspnetcorekampi.ViewComponents.Category
+{
+    public class CategoryListOnDashboard : ViewComponent
+    {
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+
+        public IViewComponentResult Invoke() // Invoke çağırmak anlamına geliyor.
+        {
+            var values = cm.Getlist();
+            return View(values);
+        }
+    }
+}
