@@ -27,14 +27,13 @@ namespace aspnetcorekampi.Controllers
         }
 
         public IActionResult BlogReadAll(int id)
-        {            
-            ViewBag.i = id;
-            var values = bm.GetBlogByID(id);
-
+        {  
             Context c = new Context();
             var Goruntulendi = c.Blogs.Find(id);
             Goruntulendi.BlogGoruntulenme++;
-            c.SaveChanges();
+            c.SaveChanges();           
+            ViewBag.i = id;
+            var values = bm.GetBlogByID(id);          
             return View(values);
         }
 
