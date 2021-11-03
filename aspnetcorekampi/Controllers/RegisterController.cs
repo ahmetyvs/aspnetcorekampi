@@ -33,7 +33,7 @@ namespace aspnetcorekampi.Controllers
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Yeni kayıt, deneme";
-                wm.WriterAdd(p);
+                wm.TAdd(p);
                 return RedirectToAction("Index", "Blog");
             }
             else

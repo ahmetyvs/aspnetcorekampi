@@ -18,9 +18,14 @@ namespace BusinessLayer.Concrete
             _writerdal = writerdal;
         }
 
-        public List<Writer> Getlist()
+        public List<Writer> Getlist() //Admin panelinde tüm yazarları listelemek için kullanılacak.
         {
             throw new NotImplementedException();
+        }
+
+        public List<Writer> GetWriterById(int id) // Writer paneli için giriş yapan tek yazar getirmek için kullanılacak
+        {
+            return _writerdal.GetListAll(x=>x.WriterID==id);
         }
 
         public void TAdd(Writer t)
@@ -43,9 +48,9 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public void WriterAdd(Writer t)
-        {
-            _writerdal.Insert(t);
-        }
+        //public void WriterAdd(Writer t)
+        //{
+        //    _writerdal.Insert(t);
+        //}
     }
 }

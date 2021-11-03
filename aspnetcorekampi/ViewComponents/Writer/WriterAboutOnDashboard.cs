@@ -15,8 +15,8 @@ namespace aspnetcorekampi.ViewComponents.Writer
 
         public IViewComponentResult Invoke()
         {
-            //var values = writermanager.GetBlogListWithCategory(); // Son 10 bloğu çekecek şekilde düzenlenecek
-            return View(/*values*/);
+            var values = writermanager.GetWriterById(1);
+            return View(values);
         }
     }
 }
