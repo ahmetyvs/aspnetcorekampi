@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +10,12 @@ namespace aspnetcorekampi.ViewComponents.Writer
 {
     public class WriterNotification : ViewComponent
     {
-        // BlogManager bm = new BlogManager(new EfBlogRepository());
+        NotificationManager nm = new NotificationManager(new EfNotificationRepository());
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke() // Invoke çağırmak anlamına geliyor.
         {
-            return View();
+            var values = nm.Getlist();
+            return View(values);
         }
     }
 }

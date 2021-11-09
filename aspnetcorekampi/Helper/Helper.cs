@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 
-namespace nufusmevzuati.Helper
+namespace aspnetcorekampi.Helper
 {
     public static class Helper
     {
@@ -40,7 +40,8 @@ namespace nufusmevzuati.Helper
                 return timeSpan.Days > 30 ? String.Format("{0} Ay önce", timeSpan.Days / 30) : "Yaklaşık bir ay önce";
             }
             //Yıl 
-           return timeSpan.Days > 365 ? String.Format("{0} yıl önce", timeSpan.Days / 365) : "yaklaşık bir yıl önce";
+            return timeSpan.Days > 365 ? String.Format("{0} yıl önce", timeSpan.Days / 365) : "yaklaşık bir yıl önce";
         }
     }
 }
+// WritrMessageNotification'da kullandım. ViewComponet yapısındaki
