@@ -18,7 +18,7 @@
                                 <th> # </th>
                                 <th> Aktif/Pasif </th>
                                 <th> Tarih </th>
-                                @*<th> Bildirim Tipi </th>*@
+                                <th> Bildirim Tipi </th>
                                 <th> Bildirimin İçeriği </th>
                             </tr>
                         </thead>
@@ -39,19 +39,13 @@
                                         }
                                     </td>
                                     <td>
-                                        @item.NotificationDate
+                                        @item.NotificationDate.ToShortDateString()
                                     </td>
-                                    @*<td>
+                                    <td>
                                         @item.NotificationType
-                                    </td>*@
+                                    </td>
                                     <td>
                                         @item.NotificationDetails
-                                    </td>
-
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
                                     </td>
                                 </tr>
                             }
