@@ -12,13 +12,12 @@ namespace aspnetcorekampi.ViewComponents.Writer
     public class WriterMessageNotification : ViewComponent
     {
 
-        MessageManager mm = new MessageManager(new EfMessageRepository());
+        Message2Manager mm = new Message2Manager(new EfMessage2Repository());
 
         public IViewComponentResult Invoke() // Invoke çağırmak anlamına geliyor.
         {
-            string p;
-            p = "deneme@deneme.com.tr"; // buradaki değer daha sonra sessiondan gelen değer ile belirlenecek
-            var values = mm.GetInboxlistByWriter(p);
+            int id = 2; // buradaki değer daha sonra sessiondan gelen değer ile belirlenecek
+            var values = mm.GetInboxlistByWriter(id);
             return View(values);
         }
 
