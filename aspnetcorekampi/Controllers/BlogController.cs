@@ -14,11 +14,14 @@ using System.Threading.Tasks;
 
 namespace aspnetcorekampi.Controllers
 {
-    [AllowAnonymous]
 
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
+
+        WriterManager wm = new WriterManager(new EfWriterRepository());
+
+        Context c = new Context();
 
         public IActionResult Index()
         {
@@ -27,19 +30,20 @@ namespace aspnetcorekampi.Controllers
         }
 
         public IActionResult BlogReadAll(int id)
-        {  
-            Context c = new Context();
+        {
             var Goruntulendi = c.Blogs.Find(id);
             Goruntulendi.BlogGoruntulenme++;
-            c.SaveChanges();           
+            c.SaveChanges();
             ViewBag.i = id;
-            var values = bm.GetBlogByID(id);          
+            var values = bm.GetBlogByID(id);
             return View(values);
         }
 
         public IActionResult BlogListByWriter()
-        {   // Buradaki 1 ıd numaralı yazar daha sonra Session ile çekilecek.
-            var values = bm.GetListWithCategoryByWriterBm(1); // BlogManagerden gelen İsim ile eştile (değiştir) İşl. sırası -4-
+        {
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = bm.GetListWithCategoryByWriterBm(writerId); // BlogManagerden gelen İsim ile eştile (değiştir) İşl. sırası -4-
             return View(values);
         }
 
@@ -63,12 +67,16 @@ namespace aspnetcorekampi.Controllers
         {
             BlogValidator bv = new BlogValidator();
             ValidationResult result = bv.Validate(p); // Çok önemli... Burada  ValidationResult'ı kullanırken Annodations değil using FluentValidation seçilecek
+
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+
             if (result.IsValid)
             {
                 p.BlogStatus = true;
                 p.BlogCreateDate = DateTime.Now;
                 p.BlogGoruntulenme = 1;
-                p.WriterID = 1;
+                p.WriterID = writerId;
                 bm.TAdd(p);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -82,11 +90,11 @@ namespace aspnetcorekampi.Controllers
             return View();
         }
 
-        public IActionResult DeleteBlog (int id)
+        public IActionResult DeleteBlog(int id)
         {
             var blogvalue = bm.TGetById(id);
             bm.TDelete(blogvalue);
-            return RedirectToAction ("BlogListByWriter");
+            return RedirectToAction("BlogListByWriter");
         }
 
         [HttpGet]
@@ -109,8 +117,19 @@ namespace aspnetcorekampi.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog p)
         {
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+
+            p.WriterID = writerId;
             bm.TUpdate(p);
             return RedirectToAction("BlogListByWriter");
+        }
+
+        private void UserID()
+        {
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            ViewBag.UsersID = writerId;
         }
     }
 }

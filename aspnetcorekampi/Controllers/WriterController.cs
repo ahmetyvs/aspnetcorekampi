@@ -1,6 +1,7 @@
 ﻿using aspnetcorekampi.Models;
 using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -18,9 +19,16 @@ namespace aspnetcorekampi.Controllers
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
 
-        [AllowAnonymous] // çalışma bittikten sonra sileceğim
+        Context c = new Context();
+
+        [Authorize]
         public IActionResult Index()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.v = usermail; //kullanıcı mail adresini getirir
+            Context context = new Context();
+            var writerName = context.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writerName; //kullanıcının kullanıcı adını getirir
             return View();
         }
 
@@ -33,7 +41,10 @@ namespace aspnetcorekampi.Controllers
         [HttpGet]
         public IActionResult EditWriterProfile()
         {
-            var writervalues = wm.TGetById(1);
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = wm.GetWriterById(writerId);
+            var writervalues = wm.TGetById(writerId);
             return View(writervalues);
         }
 
