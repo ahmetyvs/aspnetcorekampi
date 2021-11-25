@@ -11,12 +11,12 @@ namespace aspnetcorekampi.Controllers
 
     public class AdminController : Controller
     {
-        public IActionResult Index()
+        public IActionResult _Index()
         {
             return View();
         }
 
-        public PartialViewResult AdminSolnavbar()
+        public PartialViewResult _AdminSolnavbar()
         {
             return PartialView();
         }
