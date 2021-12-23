@@ -8,9 +8,9 @@
 
 <div class="tech-btm">
     <p>Teknoloji, yazılım ve diğer bloglar... </p>
-    <input type="submit" id="submit" value="Abone ol">
+    <input type="submit" id="submit" value="Abone ol" required>
 </div>
-<script>
+<script type="text/javascript">
     $(document).on("click", "#submit", async function () {
         const { value: formValues } = await Swal.fire({
             title: 'Bültene Abone Ol..',
@@ -24,13 +24,39 @@
             focusConfirm: false,
             preConfirm: () => {
                 return [
-                    document.getElementById('Mail').value,
+                    document.getElementById('Mail').value
                 ]
             }
         })
-
-        if (formValues) {
-            Swal.fire(JSON.stringify(formValues))
-        }
+        $.ajax({
+            url: '@Url.Action("SubscribeMaill", "NewsLetter")',
+            type: 'POST',
+            dataType: 'json',
+            data: { Mail: formValues[0] },
+            success: function (gelenDeger) {
+                if (gelenDeger == '1') {
+                    Swal.fire({
+                        icon: 'success',
+                        type: 'success',
+                        title: 'Başarılı!',
+                        text: 'Abonelik başarkılı!',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Tamam'
+                 })
+             }
+             else
+             {
+                    Swal.fire({
+                        type: 'error',
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Hata!',
+                        text: 'Bir hata oluştu, mail adresinizi girerek tekrar deneyin!',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Tamam'
+                 })
+             }
+            }
+         });
     });
 </script>

@@ -15,6 +15,7 @@ namespace aspnetcorekampi.Controllers
     public class NewsLetterController : Controller
     {
         NewsletterManager nm = new NewsletterManager(new EfNewsletterRepository());
+        //Context c = new Context();
 
         [HttpGet]
         public PartialViewResult SubscribeMail()
@@ -22,12 +23,26 @@ namespace aspnetcorekampi.Controllers
             return PartialView();
         }
 
-        [HttpPost]
-        public PartialViewResult SubscribeMail(NewsLetter p)
+        //[HttpPost]
+        //public PartialViewResult SubscribeMail(NewsLetter p)
+        //{
+        //    //p.MailStatus = true;
+        //    //nm.AddNewsLetter(p);
+        //    return PartialView();
+        //}
+
+        public JsonResult SubscribeMaill(NewsLetter p)
         {
-            p.MailStatus = true;
-            nm.AddNewsLetter(p);
-            return PartialView();
+            if (p.Mail==null) //formun doğru dolduruludu mu?
+            {
+                return Json("0");
+            }
+            else
+            {
+                p.MailStatus = true;
+                nm.AddNewsLetter(p);
+                return Json("1");
+            }
         }
     }
 }
